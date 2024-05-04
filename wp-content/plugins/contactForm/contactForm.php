@@ -122,7 +122,7 @@ function contact_form_capture() {
             if ($response == "success") {
                 $_SESSION['contact_form_response'] = "Email sent successfully";
             } else {
-                $_SESSION['contact_form_response'] = "Failed to send email. Please Try again." . getenv('APP_PASSWORD');
+                $_SESSION['contact_form_response'] = "Failed to send email. Please Try again.";
 
             }
         }
@@ -139,6 +139,7 @@ function display_contact_form_response() {
         $message = $_SESSION['contact_form_response'];
         $class = ($_SESSION['contact_form_response'] == "Email sent successfully") ? "success" : "error";
         echo "<script>document.getElementById('form_message').innerHTML = '<div class=\"$class\">$message</div>';</script>";
+        echo "<script>window.location.hash = 'contact_form';</script>";
         unset($_SESSION['contact_form_response']);
     }
 }
